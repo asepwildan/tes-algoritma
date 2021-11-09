@@ -9,4 +9,33 @@
     <body>
         <h1>tes</h1>
     </body>
+    <script>
+        //         create function to determine the given expression is correct or not
+        // expression will be string of open bracket nor close bracket e.g ({[[()]]})
+        // your function should determine the expression is it correct or not
+        // examples:
+        // ({[]}) => true
+        // ([][]{})=> true
+        // ({)(]){[} => false
+        // [)()] => false
+
+        function determine(e) {
+            var cek = e.split("");
+            console.log(cek);
+            abc2 = "";
+            var abc = cek[cek.length - 1];
+            console.log(abc);
+            for (let i = 0; i < cek.length; i++) {
+                if (cek[i] === "(" && abc === ")") {
+                    console.log("true");
+                    abc2 = "true";
+                } else {
+                    console.log("false");
+                    abc2 = "false";
+                }
+            }
+        }
+
+        determine("({[]})");
+    </script>
 </html>
