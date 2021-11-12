@@ -1,41 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        <h1>tes</h1>
-    </body>
-    <script>
-        //         create function to determine the given expression is correct or not
-        // expression will be string of open bracket nor close bracket e.g ({[[()]]})
-        // your function should determine the expression is it correct or not
-        // examples:
-        // ({[]}) => true
-        // ([][]{})=> true
-        // ({)(]){[} => false
-        // [)()] => false
 
-        function determine(e) {
-            var cek = e.split("");
-            console.log(cek);
-            abc2 = "";
-            var abc = cek[cek.length - 1];
-            console.log(abc);
-            for (let i = 0; i < cek.length; i++) {
-                if (cek[i] === "(" && abc === ")") {
-                    console.log("true");
-                    abc2 = "true";
-                } else {
-                    console.log("false");
-                    abc2 = "false";
-                }
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>tes</h1>
+</body>
+<script>
+    let dd = "({[]})";
+    function determine(value) {
+        let pembuka = [];
+
+        for (let i = 0; i < value.length; i++) {
+            let temp = value[i];
+
+            if (temp == "(" || temp == "[" || temp == "{") {
+                pembuka.push(temp);
+                continue;
+            }
+
+            if (pembuka.length == 0) return false;
+
+            let cekPenutup;
+
+            switch (temp) {
+                case ")":
+                    cekPenutup = pembuka.pop();
+                    if (cekPenutup == "{" || cekPenutup == "[") return false;
+
+                    break;
+
+                case "}":
+                    cekPenutup = pembuka.pop();
+                    if (cekPenutup == "(" || cekPenutup == "[") return false;
+
+                    break;
+
+                case "]":
+                    cekPenutup = pembuka.pop();
+                    if (cekPenutup == "(" || cekPenutup == "{") return false;
+
+                    break;
             }
         }
 
-        determine("({[]})");
-    </script>
+
+        return pembuka.length == 0;
+    }
+
+    if (determine("({[]}){}")) document.write(`True `);
+    else document.write(`False`);
+
+</script>
+
 </html>
